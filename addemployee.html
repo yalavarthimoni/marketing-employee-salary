@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Employee</title>
+  <style>
+    body {
+      background-color: #eef8fc; /* Matches login page background */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0a2a52;
+      margin-top: 40px;
+    }
+
+    .form-section {
+      margin: 30px auto;
+      padding: 30px;
+      background-color: white;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      border-radius: 15px;
+    }
+
+    .form-section input {
+      margin: 10px 0;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .form-section button {
+      margin-top: 10px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0a2a52; /* Dark blue like login button */
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .form-section button:hover {
+      background-color: #073061; /* Slightly darker on hover */
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Add New Employee</h2>
+
+  <div class="form-section">
+    <input type="text" id="ename" placeholder="Employee Name" required />
+    <input type="email" id="eemailid" placeholder="Email ID" required />
+    <input type="password" id="epassword" placeholder="Password" required />
+    <input type="text" id="epincode" placeholder="Pincode" required />
+    <button onclick="addEmployee()">Add Employee</button>
+  </div>
+
+  <script>
+    function addEmployee() {
+      const ename = document.getElementById('ename').value.trim();
+      const emailid = document.getElementById('eemailid').value.trim();
+      const epassword = document.getElementById('epassword').value.trim();
+      const epincode = document.getElementById('epincode').value.trim();
+
+      if (!ename || !emailid || !epassword || !epincode) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      fetch('http://localhost:5000/addemploye', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ename,
+          emailid,
+          epassword, // Note: backend expects 'eepassword', change if necessary
+          epincode
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        alert(data.message);
+        document.getElementById('ename').value = '';
+        document.getElementById('eemailid').value = '';
+        document.getElementById('epassword').value = '';
+        document.getElementById('epincode').value = '';
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Error adding employee. Check console.");
+      });
+    }
+  </script>
+
+</body>
+</html>

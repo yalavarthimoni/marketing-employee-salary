@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #eaf6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0b2545;
+      margin-bottom: 25px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0b2545;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #134074;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="login">
+      <input type="text" name="eemailid" placeholder="Enter email ID" id="eemailid" required>
+      <input type="password" name="epassword" placeholder="Enter password" id="epassword" required>
+
+      <select id="usertype">
+        <option value="employee">Employee</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("login");
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("eemailid").value;
+      const password = document.getElementById("epassword").value;
+      const userType = document.getElementById("usertype").value;
+
+      const data = {
+        eemailid: email,
+        epassword: password
+      };
+
+      if (userType === "admin") {
+        if (email === "admin@gmail.com" && password === "adm") {
+          alert("Admin login successful");
+          window.location.href = "adminpage.html";
+        } else {
+          alert("Admin login failed. Check email or password.");
+        }
+      } else {
+        fetch("http://localhost:5000/employelogin", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.access_token) {
+            sessionStorage.setItem("access_token", data.access_token);
+            alert("Employee login successful");
+            window.location.href = "eprofile.html";
+          } else {
+            alert(data.Message || "Login failed. The employee should register first.");
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

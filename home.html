@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketingMate | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, #e0f7ff, #ffffff);
+      color: #1f2937;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0ea5e9;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem;
+      gap: 2rem;
+    }
+
+    .hero-text {
+      max-width: 50%;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: #0f172a;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .hero-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .hero-images img {
+      border-radius: 16px;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 4rem;
+      background: #f9fafb;
+    }
+
+    .feature {
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .feature h3 {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      color: #0f172a;
+    }
+
+    .feature p {
+      color: #64748b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #e5e7eb;
+      color: #334155;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">MarketingMate</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href=register.html>Register</a>
+      <a href=login.html>Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Marketing employe salary calculation</h1>
+      <p>Calculate, track, and manage marketing employee salaries with ease. Our platform simplifies payroll so you can focus on growth, not spreadsheets.</p>
+    </div>
+    <div class="hero-images">
+      <img src="img3.jpg" alt="Dashboard View">
+      <img src="img2.jpg" alt="Analytics Panel" height="225" width="225">
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <img src="https://img.icons8.com/ios-filled/50/payroll.png" alt="Payroll Icon">
+      <h3>Accurate Salary Calculations</h3>
+      <p>Automated system ensures error-free monthly calculations for all employees.</p>
+    </div>
+    <div class="feature">
+      
+      <h3>Real-Time Reports</h3>
+      <p>Get insightful visual reports to understand employee performance and salary metrics.</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/ios-filled/50/cloud.png" alt="Cloud Icon">
+      <h3>Cloud Backup</h3>
+      <p>Securely store salary records and access them from anywhere, anytime.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 MarketingMate. All rights reserved.
+  </footer>
+</body>
+
+</html>

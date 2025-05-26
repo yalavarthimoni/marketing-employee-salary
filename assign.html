@@ -1,0 +1,47 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+
+
+        <table id="tabledata">
+            <thead>
+                <tr>
+                    <th> employe id</th>
+                    <th> employe name</th>
+                    
+                    <th> employe email id</th>
+                    <th> employe pincode </th>
+                    <th> Assign employe to work</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+<!-- localhost:5000/viewallproduct  GET   for fetching the data-->
+    <script>
+    fetch('http://localhost:5000/viewallemployes')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const tablebody = document.querySelector('#tabledata tbody');
+            data.forEach(emp => {
+                const row = `<tr>
+                    <td>${emp.eid}</td>
+                    <td>${emp.ename}</td>
+                    <td>${emp.eemailid}</td>
+                    <td>${emp.epincode}</td>
+            
+                    <td><a href="assignment.html?eid=${emp.eid}}">Assign</a></td>
+                </tr>`;
+                tablebody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error("Error fetching in employes:", error));
+</script>
+
+    </body>
+    
+</html>

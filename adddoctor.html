@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Doctor</title>
+  <style>
+    body {
+      background-color: #eef8fc; /* Matches login page background */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0a2a52;
+      margin-top: 40px;
+    }
+
+    .form-section {
+      margin: 30px auto;
+      padding: 30px;
+      background-color: white;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      border-radius: 15px;
+    }
+
+    .form-section input {
+      margin: 10px 0;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .form-section button {
+      margin-top: 10px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0a2a52; /* Dark blue like login button */
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .form-section button:hover {
+      background-color: #073061; /* Slightly darker on hover */
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Add New Doctor</h2>
+
+  <div class="form-section">
+    <input type="text" id="dname" placeholder="Doctor Name" required />
+    <input type="email" id="demailid" placeholder="Email ID" required />
+    <input type="text" id="dpincode" placeholder="Pincode" required />
+    <input type="text" id="daddress" placeholder="Address" required />
+    <input type="text" id="dspeciality" placeholder="Speciality" required />
+    <button onclick="addDoctor()">Add Doctor</button>
+  </div>
+
+  <script>
+    function addDoctor() {
+      const dname = document.getElementById('dname').value.trim();
+      const demailid = document.getElementById('demailid').value.trim();
+      const dpincode = document.getElementById('dpincode').value.trim();
+      const daddress = document.getElementById('daddress').value.trim();
+      const dspeciality = document.getElementById('dspeciality').value.trim();
+
+      if (!dname || !demailid || !dpincode || !daddress || !dspeciality) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      fetch('http://localhost:5000/adddoctor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          dname,
+          demailid,
+          dpincode,
+          daddress,
+          dspeciality
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        alert(data.message);
+        document.getElementById('dname').value = '';
+        document.getElementById('demailid').value = '';
+        document.getElementById('dpincode').value = '';
+        document.getElementById('daddress').value = '';
+        document.getElementById('dspeciality').value = '';
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Error adding doctor. Check console.");
+      });
+    }
+  </script>
+
+</body>
+</html>

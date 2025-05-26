@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eaf6fb; /* Same light blue as login/home */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .admin-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #0a2540; /* Dark navy blue */
+            margin-bottom: 30px;
+        }
+
+        .btn-link {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #0a2540;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-link:hover {
+            background-color: #16335b;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-box">
+        <h2>Admin Panel</h2>
+        <a href="addemployee.html" class="btn-link">Add Employee</a>
+        <a href="deleteemployee.html" class="btn-link">Delete Employee</a>
+        <a href="viewemployees.html" class="btn-link">View Employees</a>
+        <a href="adddoctor.html" class="btn-link">Add Doctor</a>
+        <a href="deletedoctor.html" class="btn-link">Delete Doctors</a>
+        <a href="viewdoctors.html" class="btn-link">View Doctors</a>
+        <a href=assign.html class="btn-link">Assign Doctors to employes</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #eaf6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .register-container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0b2545;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0b2545;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #134074;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Register</h2>
+    <form id="register">
+      <input type="text" name="ename" placeholder="Enter name" id="ename" required>
+      <input type="text" name="eemailid" placeholder="Enter email ID" id="eemailid" required>
+      <input type="password" name="epassword" placeholder="Enter password" id="epassword" required>
+      <input type="text" name="epincode" placeholder="Enter pincode" id="epincode" required>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("register");
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        ename: document.getElementById("ename").value,
+        eemailid: document.getElementById("eemailid").value,
+        epassword: document.getElementById("epassword").value,
+        epincode: document.getElementById("epincode").value,
+      };
+
+      fetch("http://localhost:5000/employeregister", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.Message === "employe registration successful") {
+          alert("Employee registration successful");
+          window.location.href = "login.html";
+        } else {
+          alert(data.Message || "Registration failed");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
